@@ -25,12 +25,13 @@ const weatherIcon = document.querySelector(".weather-icon");
 if (searchInput) {
   searchInput.addEventListener("change", (e) => {
     fetch(
-      `https://api.open123weathermap.org/data/2.5/weather?q=${e.target.value}&appid=${APP_ID}&lang=vi`
+      `https://api.openweathermap.org/data/2.5/weather?q=${e.target.value}&appid=${APP_ID}&lang=vi`
     )
       .then(async (res) => {
         const data = await res.json();
         console.log("[Search Input]", data);
         cityName.innerHTML = data.name || DEFAULT_VALUE;
+        cityName.innerHTML = '<div className="on-click"></div>';
         weatherIcon.setAttribute(
           "src",
           `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
